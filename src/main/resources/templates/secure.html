@@ -7,8 +7,13 @@
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 <body>
-<h2>Insecure Page</h2>
-<a href="/secure">Secure Page</a>
+<h3>Secure Page</h3>
+<a href="/logout">logut</a>
+<h4>email</h4>
+<p th:text="${myuser.email}"><</p><br/>
+<h4>last name</h4>
+<p th:text="${myuser.lastName}"></p>
+
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
