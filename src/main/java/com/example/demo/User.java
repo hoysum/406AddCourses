@@ -5,6 +5,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.HashSet;
 
 @Entity
 @Table(name="User_Data")
@@ -39,6 +40,7 @@ public class User {
     private Collection<Role> roles;
 
     public User() {
+        roles = new HashSet<>();
 
     }
     public User(String email, String password, String firstName, String lastName, boolean enabled, String username) {
@@ -48,6 +50,7 @@ public class User {
         this.setLastName(lastName);
         this.setEnabled(enabled);
         this.setUsername(username);
+        roles = new HashSet<>();
     }
 
     public long getId() {
