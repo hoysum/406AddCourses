@@ -13,7 +13,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 
 @Configuration
-    @EnableWebSecurity
+@EnableWebSecurity
     public class SecurityConfiguration extends
             WebSecurityConfigurerAdapter {
 
@@ -23,7 +23,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
         }
         @Autowired
-        private SSUserDetailsService UserDetailsService;
+        private SSUserDetailsService userDetailsService;
 
         @Autowired
         private UserRepository userRepository;
@@ -39,7 +39,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
                     //Restricts access to routes
             http.authorizeRequests()
-                    .antMatchers("/", "h2-console/**", "/register").permitAll()
+                    .antMatchers("/", "h2-console/**", "/register","/css/**","/image/**").permitAll()
                     //.access("hasAnyAuthority('USER','ADMIN')")
                     .antMatchers("/admin").access("hasAuthority('ADMIN')")
                     .anyRequest().authenticated()

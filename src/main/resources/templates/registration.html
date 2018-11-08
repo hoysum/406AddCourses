@@ -8,8 +8,11 @@
 </head>
 <body>
 
-<h4>New User Registration<</h4>
+<div th:replace="base:: nav"></div>
 
+<div class="container">
+    <h4>New User Registration</h4>
+<h4>New User Registration</h4>
 <form autocomplete="off"
     action="#"
       th:action="@{/register}"
@@ -29,7 +32,7 @@
 
     Email <mark><strong>
     <span th:if="${#fields.hasErrors('email')}"
-          th:errors="#{email}">Email Error</span>
+          th:errors="*{email}">Email Error</span>
 </strong></mark>
     <input type ="text" id="email" placeholder="Email"
            th:field="*{email}" />

@@ -18,19 +18,40 @@ public class HomeController {
     @Autowired
     private CourseRepository courseRepository;
 
-    @GetMapping("/")
-    public String showlistpage(Model model) {
-        model.addAttribute("user", new User());
-        return "list";
-    }
-    @GetMapping("/login")
+//        @RequestMapping("/")
+//        public String showRegistrationPage(Model model) {
+//            model.addAttribute("user", new User());
+//            return "registration";
+//        }
+
+
+    @RequestMapping("/login")
     public String showlogin() {
         return "login";
     }
+
     @GetMapping("/register")
-    public String showRegistrationPage(Model model) {
+    public String showregistration(Model model) {
         model.addAttribute("user", new User());
         return "registration";
+    }
+
+    @PostMapping("/register")
+    public String processRegistrationPage(@Valid @ModelAttribute("user") User user, BindingResult result, Model model) {
+        model.addAttribute("user", user);
+        if (result.hasErrors()) {
+            return "registration";
+        } else {
+            userService.saveUser(user);
+            model.addAttribute("message", "User Account Created");
+        }
+        return "list";
+    }
+
+    @RequestMapping("/")
+    public String listCourses(Model model){
+        model.addAttribute("courses",courseRepository.findAll());
+        return "list";
     }
 
     @GetMapping("/add")
@@ -46,7 +67,7 @@ public class HomeController {
             return "courseform";
         }
         courseRepository.save(course);
-        return "redirect:/list";
+        return "redirect:/";
     }
     @RequestMapping("/detail/{id}")
     public String showCourse(@PathVariable("id") long id, Model model) {

@@ -1,0 +1,8 @@
+.container {
+    margin-top: 100px;
+}
+
+body{
+    background-image: url("/image/sunshine.jpg");
+    background-size: 100%;
+}

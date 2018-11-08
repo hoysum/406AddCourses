@@ -6,8 +6,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -30,9 +31,11 @@ public class SSUserDetailsService implements UserDetailsService{
                 return null;
 
             }
-            System.out.println("User from username " + appUser.toString());
-            return new CustomUserDetails(appUser, getAuthorities(appUser));
-
+            System.out.println(" User from username " + appUser.toString());
+            return new org.springframework.security.core.userdetails.User(
+                    appUser.getUsername(),
+                    appUser.getPassword(),
+                    getAuthorities(appUser));
         } catch (Exception e) {
             throw new UsernameNotFoundException("User not found");
         }

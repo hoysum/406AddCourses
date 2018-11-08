@@ -16,9 +16,6 @@ public class DataLoader implements CommandLineRunner {
     @Autowired
     RoleRepository roleRepository;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-
     @Override
     public void run(String... strings) throws Exception {
         roleRepository.save(new Role("USER"));
