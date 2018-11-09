@@ -1,14 +1,12 @@
 package com.example.demo;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.security.Principal;
 
 @Controller
 public class HomeController {
@@ -16,7 +14,7 @@ public class HomeController {
     private UserService userService;
 
     @Autowired
-    private CourseRepository courseRepository;
+    private BullhornRepository bullhornRepository;
 
 //        @RequestMapping("/")
 //        public String showRegistrationPage(Model model) {
@@ -49,40 +47,40 @@ public class HomeController {
     }
 
     @RequestMapping("/")
-    public String listCourses(Model model){
-        model.addAttribute("courses",courseRepository.findAll());
+    public String listBullhorns(Model model){
+        model.addAttribute("bullhorns",bullhornRepository.findAll());
         return "list";
     }
 
     @GetMapping("/add")
-    public String courseForm(Model model){
-        model.addAttribute("course", new Course());
-        return "courseform";
+    public String bullhornForm(Model model){
+        model.addAttribute("bullhorn", new Bullhorn());
+        return "bullhornform";
     }
 
     @PostMapping("/process")
-    public String processForm(@Valid Course course,
+    public String processForm(@Valid Bullhorn bullhorn,
                               BindingResult result){
-        if (result.hasErrors()){
-            return "courseform";
-        }
-        courseRepository.save(course);
+//        if (result.hasErrors()){
+//            return "bullhornform";
+//        }
+        bullhornRepository.save(bullhorn);
         return "redirect:/";
     }
     @RequestMapping("/detail/{id}")
-    public String showCourse(@PathVariable("id") long id, Model model) {
-        model.addAttribute("course", courseRepository.findById(id).get());
-        return "show";
+    public String showBullhorn(@PathVariable("id") long id, Model model) {
+        model.addAttribute("bullhorn", bullhornRepository.findById(id).get());
+       return "show";
     }
 
     @RequestMapping("/update/{id}")
-    public String updateCourse(@PathVariable("id") long id, Model model) {
-        model.addAttribute("course", courseRepository.findById(id).get());
-        return "courseform";
+    public String updateBullhorn(@PathVariable("id") long id, Model model) {
+        model.addAttribute("bullhorn", bullhornRepository.findById(id).get());
+        return "bullhornform";
     }
     @RequestMapping("/delete/{id}")
-    public String delCourse(@PathVariable("id") long id){
-        courseRepository.deleteById(id);
+    public String delBullhorn(@PathVariable("id") long id){
+        bullhornRepository.deleteById(id);
         return "redirect:/";
 
 

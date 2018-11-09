@@ -39,7 +39,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
                     //Restricts access to routes
             http.authorizeRequests()
-                    .antMatchers("/", "h2-console/**", "/register","/css/**","/image/**").permitAll()
+                    .antMatchers("/", "mySQL/**", "/register","/css/**","/image/**").permitAll()
                     //.access("hasAnyAuthority('USER','ADMIN')")
                     .antMatchers("/admin").access("hasAuthority('ADMIN')")
                     .anyRequest().authenticated()

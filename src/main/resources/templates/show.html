@@ -7,12 +7,13 @@
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 <body>
-<a href="/">Show All Courses</a><br />
-Title :<span th:text="${course.title}"></span><br />
-Instructor :<span th:text="${course.instructor}"></span><br />
-Description :<p th:text="${course.description}"></p>
-Credits :<span th:text="${course.credit}" ></span><br />
-<a th:href="@{/delete/{id}(id=${course.id})}">Delete this course</a>
+<a href="/"> One Message</a><br/>
+Title :<span th:text="${bullhorn.title}"></span><br />
+Content :<span th:text="${bullhorn.content}"></span><br />
+Posted Date :<p th:text="${bullhorn.postedDate}"></p>
+Posted By :<span th:text="${bullhorn.postedBy}" ></span><br />
+<a th:href="@{/delete/{id}(id=${bullhorn.id})}">Delete this message</a>
+
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
